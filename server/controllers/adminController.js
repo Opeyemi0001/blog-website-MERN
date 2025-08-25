@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import Blog from "../models/Blog";
 
 // Function to handle admin login
 export const adminLogin = async (req, res) => {
@@ -18,3 +19,17 @@ export const adminLogin = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+
+export const getAllBlogsAdmin = async (req, res) => {
+  try {
+    const blogs = await Blog.find({}).sort({ createdAt: -1});
+    res.json({ success: true, blogs });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+}
+
+export const getAllComments = async (req, res) => {
+  try {}
+}
